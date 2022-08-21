@@ -39,6 +39,7 @@ class WeatherListTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "WeatherCell", for: indexPath) as? WeatherTableViewCell else { return UITableViewCell() }
         let model = weatherListViewModel.modelAt(indexPath.row)
+        cell.selectionStyle = .none
         cell.configure(viewModel: model)
         return cell
     }
