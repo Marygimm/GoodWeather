@@ -9,8 +9,7 @@ import Foundation
 
 extension Double {
     
-    func formatAsDegree() -> String {
-        let temperatureInCelsius = self - 273.15
-        return String(format: "%.0fº", temperatureInCelsius)
+    func formatAsDegree() -> String{
+        return String(format: "%.0f°",self)
     }
 }

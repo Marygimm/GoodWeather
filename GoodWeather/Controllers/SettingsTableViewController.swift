@@ -8,7 +8,14 @@
 import Foundation
 import UIKit
 
+protocol SettingsDelegate {
+    func settingsDone(vm: SettingsViewModel)
+}
+
+
 class SettingsTableViewController: UITableViewController {
+    
+    var delegate: SettingsDelegate?
     
     private var settingsViewModel = SettingsViewModel()
     
@@ -16,6 +23,13 @@ class SettingsTableViewController: UITableViewController {
         super.viewDidLoad()
         
         self.navigationController?.navigationBar.prefersLargeTitles = true
+    }
+    
+    @IBAction func done() {
+        if let delegate = self.delegate {
+            delegate.settingsDone(vm: settingsViewModel)
+        }
+        self.dismiss(animated: true)
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -30,7 +44,32 @@ class SettingsTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SettingsCell", for: indexPath)
         let settingsItem = settingsViewModel.units[indexPath.row]
         cell.textLabel?.text = settingsItem.displayName
+        
+        if settingsItem == settingsViewModel.selectedUnit {
+            cell.accessoryType = .checkmark
+        }
+        
         return cell
     
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // uncheck all cells
+        
+        tableView.visibleCells.forEach { cell in
+            cell.accessoryType = .none
+        }
+        
+        if let cell = tableView.cellForRow(at: indexPath) {
+            cell.accessoryType = .checkmark
+            let unit = Unit.allCases[indexPath.row]
+            settingsViewModel.selectedUnit = unit
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        if let cell = tableView.cellForRow(at: indexPath) {
+            cell.accessoryType = .none
+        }
     }
 }

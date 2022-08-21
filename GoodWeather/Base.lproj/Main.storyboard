@@ -60,7 +60,7 @@
                         <barButtonItem key="leftBarButtonItem" title="Settings" id="blq-KC-4jr">
                             <color key="tintColor" systemColor="systemBackgroundColor"/>
                             <connections>
-                                <segue destination="J1c-LM-ZbV" kind="presentation" modalPresentationStyle="fullScreen" id="t7F-cs-zSu"/>
+                                <segue destination="J1c-LM-ZbV" kind="presentation" identifier="SettingsTableViewController" modalPresentationStyle="fullScreen" id="t7F-cs-zSu"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="fSd-Ii-yd6">
@@ -154,7 +154,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SettingsCell" id="fZF-dY-yfE">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="SettingsCell" id="fZF-dY-yfE">
                                 <rect key="frame" x="0.0" y="44.5" width="414" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fZF-dY-yfE" id="TVf-i4-dBg">
@@ -169,7 +169,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Settings" id="aDM-k5-XkI">
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="K65-fN-JQd"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="K65-fN-JQd">
+                            <connections>
+                                <action selector="done" destination="iRT-rl-lgj" id="NDb-RE-3WM"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="we9-cX-gHO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
